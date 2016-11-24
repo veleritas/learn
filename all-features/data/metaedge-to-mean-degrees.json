@@ -1,8 +1,8 @@
 {
   "Compound - binds - Gene": 7.455541237113402,
-  "Compound - treats - Disease": 0.3962628865979381,
+  "Compound - treats - Disease": 0.38144329896907214,
   "Disease - associates - Gene": 92.13868613138686,
-  "Disease - treats - Compound": 4.489051094890511,
+  "Disease - treats - Compound": 4.321167883211679,
   "Gene - associates - Disease": 0.6026736691334448,
   "Gene - binds - Compound": 0.5524468846980186
 }

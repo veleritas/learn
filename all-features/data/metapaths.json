@@ -51,10 +51,10 @@
       "CtD"
     ],
     "join_complexities": [
-      1.2669242541710106,
-      1.61197645009877,
-      0.9348942678494631,
-      0.21275310440524778
+      1.2503708451185136,
+      1.5984861378251025,
+      0.9263403067111271,
+      0.1961996953527508
     ],
     "optimal_join_index": 3,
     "midpoint_index": 1,
@@ -84,10 +84,10 @@
       "DaG"
     ],
     "join_complexities": [
-      2.3966787811950483,
-      1.7476123832885422,
-      2.109409209456083,
-      1.3425076314292854
+      2.380125372142551,
+      1.7474972858669882,
+      2.1047750791569975,
+      1.3259542223767884
     ],
     "optimal_join_index": 3,
     "midpoint_index": 1,
@@ -117,10 +117,10 @@
       "CtD"
     ],
     "join_complexities": [
-      0.902292496091267,
-      0.3374806722884826,
-      0.7971217430166584,
-      -0.15187865367449582
+      0.8526322689337762,
+      0.30743695096231805,
+      0.7759342036650758,
+      -0.20153888083198668
     ],
     "optimal_join_index": 3,
     "midpoint_index": 1,
@@ -162,7 +162,7 @@
     ],
     "optimal_join_index": 2,
     "midpoint_index": 2,
-    "dwpc_query": "MATCH path = (n0:Compound)-[:BINDS_CbG]-(n1)-[:ASSOCIATES_DaG]-(n2)-[:ASSOCIATES_DaG]-(n3)-[:ASSOCIATES_DaG]-(n4:Disease)\nUSING JOIN ON n2\nWHERE n0.identifier = { source }\nAND n4.identifier = { target }\nAND n1 <> n3 AND n2 <> n4\nWITH\n[\nsize((n0)-[:BINDS_CbG]-()),\nsize(()-[:BINDS_CbG]-(n1)),\nsize((n1)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n2)),\nsize((n2)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n3)),\nsize((n3)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n4))\n] AS degrees, path\nRETURN\ncount(path) AS PC,\nsum(reduce(pdp = 1.0, d in degrees| pdp * d ^ -{ w })) AS DWPC"
+    "dwpc_query": "MATCH path = (n0:Compound)-[:BINDS_CbG]-(n1)-[:ASSOCIATES_DaG]-(n2)-[:ASSOCIATES_DaG]-(n3)-[:ASSOCIATES_DaG]-(n4:Disease)\nUSING JOIN ON n2\nWHERE n0.identifier = { source }\nAND n4.identifier = { target }\nAND n2 <> n4 AND n1 <> n3\nWITH\n[\nsize((n0)-[:BINDS_CbG]-()),\nsize(()-[:BINDS_CbG]-(n1)),\nsize((n1)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n2)),\nsize((n2)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n3)),\nsize((n3)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n4))\n] AS degrees, path\nRETURN\ncount(path) AS PC,\nsum(reduce(pdp = 1.0, d in degrees| pdp * d ^ -{ w })) AS DWPC"
   },
   {
     "length": 4,
@@ -192,11 +192,11 @@
       "CtD"
     ],
     "join_complexities": [
-      1.956870491419158,
-      2.233899118121161,
-      0.7974131635233311,
-      1.3919845765325585,
-      0.9026993416533952
+      1.923763673314164,
+      2.202286500071937,
+      0.7882772087824779,
+      1.3754311674800614,
+      0.8695925235484012
     ],
     "optimal_join_index": 2,
     "midpoint_index": 2,
@@ -268,11 +268,11 @@
       "CtD"
     ],
     "join_complexities": [
-      1.9568704914191581,
-      1.3131652338925002,
-      1.8449705080089338,
-      1.3919845765325582,
-      0.902699341653395
+      1.923763673314164,
+      1.2966118248400031,
+      1.8284170989564368,
+      1.3754311674800612,
+      0.8695925235484011
     ],
     "optimal_join_index": 4,
     "midpoint_index": 2,
@@ -306,11 +306,11 @@
       "DaG"
     ],
     "join_complexities": [
-      1.956870491419158,
-      1.3131652338925002,
-      1.7216505021051032,
-      2.0228444572892967,
-      0.9026993416533952
+      1.923763673314164,
+      1.2966118248400031,
+      1.7205728083489644,
+      2.018814921076988,
+      0.8695925235484012
     ],
     "optimal_join_index": 4,
     "midpoint_index": 2,
