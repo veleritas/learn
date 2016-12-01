@@ -41,10 +41,10 @@
       "Compound - treats - Disease"
     ],
     "join_complexities": [
-      1.2669242541710106,
-      1.61197645009877,
-      0.9348942678494631,
-      0.21275310440524778
+      1.2503708451185136,
+      1.5984861378251025,
+      0.9263403067111271,
+      0.1961996953527508
     ],
     "length": 3,
     "midpoint_index": 1,
@@ -74,10 +74,10 @@
       "Compound - treats - Disease"
     ],
     "join_complexities": [
-      0.902292496091267,
-      0.3374806722884826,
-      0.7971217430166584,
-      -0.15187865367449582
+      0.8526322689337762,
+      0.30743695096231805,
+      0.7759342036650758,
+      -0.20153888083198668
     ],
     "length": 3,
     "midpoint_index": 1,
@@ -95,7 +95,7 @@
   },
   {
     "abbreviation": "CbGaDaGaD",
-    "dwpc_query": "MATCH path = (n0:Compound)-[:BINDS_CbG]-(n1)-[:ASSOCIATES_DaG]-(n2)-[:ASSOCIATES_DaG]-(n3)-[:ASSOCIATES_DaG]-(n4:Disease)\nUSING JOIN ON n2\nWHERE n0.identifier = { source }\nAND n4.identifier = { target }\nAND n1 <> n3 AND n2 <> n4\nWITH\n[\nsize((n0)-[:BINDS_CbG]-()),\nsize(()-[:BINDS_CbG]-(n1)),\nsize((n1)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n2)),\nsize((n2)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n3)),\nsize((n3)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n4))\n] AS degrees, path\nRETURN\ncount(path) AS PC,\nsum(reduce(pdp = 1.0, d in degrees| pdp * d ^ -{ w })) AS DWPC",
+    "dwpc_query": "MATCH path = (n0:Compound)-[:BINDS_CbG]-(n1)-[:ASSOCIATES_DaG]-(n2)-[:ASSOCIATES_DaG]-(n3)-[:ASSOCIATES_DaG]-(n4:Disease)\nUSING JOIN ON n2\nWHERE n0.identifier = { source }\nAND n4.identifier = { target }\nAND n2 <> n4 AND n1 <> n3\nWITH\n[\nsize((n0)-[:BINDS_CbG]-()),\nsize(()-[:BINDS_CbG]-(n1)),\nsize((n1)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n2)),\nsize((n2)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n3)),\nsize((n3)-[:ASSOCIATES_DaG]-()),\nsize(()-[:ASSOCIATES_DaG]-(n4))\n] AS degrees, path\nRETURN\ncount(path) AS PC,\nsum(reduce(pdp = 1.0, d in degrees| pdp * d ^ -{ w })) AS DWPC",
     "edge_abbreviations": [
       "CbG",
       "GaD",
@@ -147,11 +147,11 @@
       "Compound - treats - Disease"
     ],
     "join_complexities": [
-      1.956870491419158,
-      2.233899118121161,
-      0.7974131635233311,
-      1.3919845765325585,
-      0.9026993416533952
+      1.923763673314164,
+      2.202286500071937,
+      0.7882772087824779,
+      1.3754311674800614,
+      0.8695925235484012
     ],
     "length": 4,
     "midpoint_index": 2,
