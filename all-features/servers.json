@@ -1,44 +1,44 @@
 [
   {
-    "port": 7500,
     "name": "rephetio-v2.0",
-    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0/bin/neo4j",
+    "port": 7500,
     "directory": "neo4j-community-2.3.3_rephetio-v2.0",
-    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0"
+    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0",
+    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0/bin/neo4j"
   },
   {
-    "port": 7501,
     "name": "rephetio-v2.0_perm-1",
-    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-1/bin/neo4j",
+    "port": 7501,
     "directory": "neo4j-community-2.3.3_rephetio-v2.0_perm-1",
-    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-1"
+    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-1",
+    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-1/bin/neo4j"
   },
   {
-    "port": 7502,
     "name": "rephetio-v2.0_perm-2",
-    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-2/bin/neo4j",
+    "port": 7502,
     "directory": "neo4j-community-2.3.3_rephetio-v2.0_perm-2",
-    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-2"
+    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-2",
+    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-2/bin/neo4j"
   },
   {
-    "port": 7503,
     "name": "rephetio-v2.0_perm-3",
-    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-3/bin/neo4j",
+    "port": 7503,
     "directory": "neo4j-community-2.3.3_rephetio-v2.0_perm-3",
-    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-3"
+    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-3",
+    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-3/bin/neo4j"
   },
   {
-    "port": 7504,
     "name": "rephetio-v2.0_perm-4",
-    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-4/bin/neo4j",
+    "port": 7504,
     "directory": "neo4j-community-2.3.3_rephetio-v2.0_perm-4",
-    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-4"
+    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-4",
+    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-4/bin/neo4j"
   },
   {
-    "port": 7505,
     "name": "rephetio-v2.0_perm-5",
-    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-5/bin/neo4j",
+    "port": 7505,
     "directory": "neo4j-community-2.3.3_rephetio-v2.0_perm-5",
-    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-5"
+    "path": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-5",
+    "binary": "/home/ubuntu/integrate/neo4j/neo4j-community-2.3.3_rephetio-v2.0_perm-5/bin/neo4j"
   }
 ]
