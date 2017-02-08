@@ -73,6 +73,8 @@ def main():
 
 #-------------------------------------------------------------------------------
 
+    print("Number of workers: {}".format(args.workers))
+
     with open('data/metapaths.json') as read_file:
         metapaths = json.load(read_file)
 
