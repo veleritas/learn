@@ -1,3 +1,4 @@
+import argparse
 import json
 import threading
 import concurrent.futures
@@ -50,6 +51,14 @@ def compute_dwpc(neo, hetnet, query, metapath, compound_id, disease_id, w):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Extract metapaths")
+    parser.add_argument(
+        '--workers', type=int, default=mp.cpu_count(),
+        choices=range(1, mp.cpu_count()+1)
+    )
+    args = parser.parse_args()
+
+
     with open('servers.json') as read_file:
         instances = json.load(read_file)
 
@@ -86,8 +95,6 @@ def main():
     # ## Execute queries
 
     # Parameters
-    workers = 2
-#    workers = mp.cpu_count()
     max_elems = None
 
     # Prepare writer
@@ -100,7 +107,7 @@ def main():
     ])
 
     # Create ThreadPoolExecutor
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=workers)
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=args.workers)
     writer_lock = threading.Lock()
 
     # Submit jobs
