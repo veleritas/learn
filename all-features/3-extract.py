@@ -15,7 +15,7 @@ from tqdm import tqdm
 # Override the default py2neo timeout
 py2neo.packages.httpstream.http.socket_timeout = 1e8
 
-def generate_parameters(max_elems=None, parts=None):
+def generate_parameters(max_elems=None, parts=None, metapaths=None):
     """Generate compound, disease, metapath combinations"""
     for n, metapath_dict in enumerate(metapaths):
         metapath = metapath_dict['abbreviation']
@@ -40,7 +40,11 @@ def compute_dwpc(neo, hetnet, query, metapath, compound_id, disease_id, w):
     results = neo.run(query, source=compound_id, target=disease_id, w=w)
     record = results.one
     seconds = '{0:.4g}'.format(time.time() - start)
-    row = hetnet, compound_id, disease_id, metapath, record['PC'], w, '{0:.6g}'.format(record['DWPC']), seconds
+    row = (
+        hetnet, compound_id, disease_id, metapath,
+        record['PC'], w, '{0:.6g}'.format(record['DWPC']), seconds
+    )
+
     with writer_lock:
         writer.writerow(row)
 
@@ -82,21 +86,29 @@ def main():
     # ## Execute queries
 
     # Parameters
-    workers = mp.cpu_count()
+    workers = 2
+#    workers = mp.cpu_count()
     max_elems = None
 
     # Prepare writer
     path = 'data/dwpc.tsv.bz2'
     write_file = bz2.open(path, 'wt')
     writer = csv.writer(write_file, delimiter='\t')
-    writer.writerow(['hetnet', 'compound_id', 'disease_id', 'metapath', 'PC', 'w', 'DWPC', 'seconds'])
+    writer.writerow([
+        'hetnet', 'compound_id', 'disease_id', 'metapath', 'PC',
+        'w', 'DWPC', 'seconds'
+    ])
 
     # Create ThreadPoolExecutor
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=workers)
     writer_lock = threading.Lock()
 
     # Submit jobs
-    for params in tqdm(generate_parameters(max_elems, parts), total = total_queries):
+    for params in tqdm(
+        generate_parameters(max_elems, parts, metapaths),
+        total = total_queries
+    ):
+
         while executor._work_queue.qsize() > 10000:
             time.sleep(1)
         executor.submit(compute_dwpc, **params)
