@@ -34,23 +34,33 @@ def generate_parameters(max_elems=None, parts=None, metapaths=None):
                 'w': 0.4,
             }
 
-
-def compute_dwpc(neo, hetnet, query, metapath, compound_id, disease_id, w):
-    """Execute the neo4j query and write results to file"""
-    start = time.time()
-    results = neo.run(query, source=compound_id, target=disease_id, w=w)
-    record = results.one
-    seconds = '{0:.4g}'.format(time.time() - start)
-    row = (
-        hetnet, compound_id, disease_id, metapath,
-        record['PC'], w, '{0:.6g}'.format(record['DWPC']), seconds
-    )
-
-    with writer_lock:
-        writer.writerow(row)
-
-
 def main():
+
+    def compute_dwpc(neo, hetnet, query, metapath, compound_id, disease_id, w):
+        """Execute the neo4j query and write results to file"""
+
+        # moved into main so that it can access the writer_lock variable
+
+        start = time.time()
+        results = neo.run(query, source=compound_id, target=disease_id, w=w)
+
+        # py2neo 3 uses cursors now, which consumes data differently
+        all_records = results.data()
+        assert len(all_records) == 1
+
+        record = all_records[0]
+
+        seconds = '{0:.4g}'.format(time.time() - start)
+        row = (
+            hetnet, compound_id, disease_id, metapath,
+            record['PC'], w, '{0:.6g}'.format(record['DWPC']), seconds
+        )
+
+        with writer_lock:
+            writer.writerow(row)
+
+#-------------------------------------------------------------------------------
+
     parser = argparse.ArgumentParser(description="Extract metapaths")
     parser.add_argument(
         '--workers', type=int, default=mp.cpu_count(),
