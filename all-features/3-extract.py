@@ -27,7 +27,7 @@ def generate_parameters(max_elems=None, parts=None, metapaths=None):
             yield {
                 'neo': part_info.neo,
                 'hetnet': part_info.hetnet,
-                'compound_id': part_info.compound_id,
+                'chemical_id': part_info.chemical_id,
                 'disease_id': part_info.disease_id,
                 'metapath': metapath,
                 'query': query,
@@ -36,13 +36,13 @@ def generate_parameters(max_elems=None, parts=None, metapaths=None):
 
 def main():
 
-    def compute_dwpc(neo, hetnet, query, metapath, compound_id, disease_id, w):
+    def compute_dwpc(neo, hetnet, query, metapath, chemical_id, disease_id, w):
         """Execute the neo4j query and write results to file"""
 
         # moved into main so that it can access the writer_lock variable
 
         start = time.time()
-        results = neo.run(query, source=compound_id, target=disease_id, w=w)
+        results = neo.run(query, source=chemical_id, target=disease_id, w=w)
 
         # py2neo 3 uses cursors now, which consumes data differently
         all_records = results.data()
@@ -52,7 +52,7 @@ def main():
 
         seconds = '{0:.4g}'.format(time.time() - start)
         row = (
-            hetnet, compound_id, disease_id, metapath,
+            hetnet, chemical_id, disease_id, metapath,
             record['PC'], w, '{0:.6g}'.format(record['DWPC']), seconds
         )
 
@@ -114,7 +114,7 @@ def main():
     write_file = bz2.open(path, 'wt')
     writer = csv.writer(write_file, delimiter='\t')
     writer.writerow([
-        'hetnet', 'compound_id', 'disease_id', 'metapath', 'PC',
+        'hetnet', 'chemical_id', 'disease_id', 'metapath', 'PC',
         'w', 'DWPC', 'seconds'
     ])
 
