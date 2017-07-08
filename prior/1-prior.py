@@ -35,7 +35,7 @@ treatment_df.shape
 # In[5]:
 
 # Create node to degree dictionaries
-compound_to_degree = dict(treatment_df.compound_id.value_counts())
+compound_to_degree = dict(treatment_df.chemical_id.value_counts())
 disease_to_degree = dict(treatment_df.disease_id.value_counts())
 
 
@@ -51,8 +51,8 @@ for (c, c_deg), (d, d_deg) in itertools.product(compound_to_degree.items(), dise
     edge = c, d
     degree_to_edges.setdefault(degree, set()).add(edge)
 
-pair_df = pandas.DataFrame(rows, columns=['compound_id', 'disease_id', 'compound_treats', 'disease_treats'])
-pair_df = pair_df.sort_values(['compound_id', 'disease_id'])
+pair_df = pandas.DataFrame(rows, columns=['chemical_id', 'disease_id', 'compound_treats', 'disease_treats'])
+pair_df = pair_df.sort_values(['chemical_id', 'disease_id'])
 
 
 # In[7]:
@@ -69,7 +69,7 @@ pair_df.head()
 
 # In[9]:
 
-treatments = list(zip(treatment_df.compound_id, treatment_df.disease_id))
+treatments = list(zip(treatment_df.chemical_id, treatment_df.disease_id))
 
 
 # In[10]:
@@ -88,7 +88,7 @@ multiplier = 3
 # In[12]:
 
 # Calculate the number of perms
-n_perm = treatment_df.compound_id.nunique() * treatment_df.disease_id.nunique()
+n_perm = treatment_df.chemical_id.nunique() * treatment_df.disease_id.nunique()
 n_perm = int(n_perm * 25)
 n_perm
 
