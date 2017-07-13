@@ -1,9 +1,4 @@
-
-# coding: utf-8
-
 # # Compute the prior probability of treatment using permutation 
-
-# In[1]:
 
 import itertools
 import statistics
@@ -12,27 +7,15 @@ import pandas
 
 from hetio.permute import permute_pair_list
 
-
-# In[2]:
-
 from tqdm import tqdm
 
-
-# ## Read treatments
-
-# In[3]:
-
-treatment_df = pandas.read_table('../summary/indications.tsv')
-treatment_df = treatment_df.query("rel_type == 'TREATS_CtD'")
-treatment_df.head(2)
+# Read treatments
 
 
-# In[4]:
-
-treatment_df.shape
-
-
-# In[5]:
+treatment_df = (pandas
+    .read_table('../summary/indications.tsv')
+    .query("rel_type == 'TREATS_CtD'")
+)
 
 # Create node to degree dictionaries
 compound_to_degree = dict(treatment_df.chemical_id.value_counts())
@@ -54,15 +37,6 @@ for (c, c_deg), (d, d_deg) in itertools.product(compound_to_degree.items(), dise
 pair_df = pandas.DataFrame(rows, columns=['chemical_id', 'disease_id', 'compound_treats', 'disease_treats'])
 pair_df = pair_df.sort_values(['chemical_id', 'disease_id'])
 
-
-# In[7]:
-
-pair_df.shape
-
-
-# In[8]:
-
-pair_df.head()
 
 
 # Not sure whether to filter this pair_df down to just the relation pairs which are found in the training set. Will leave it as is at the moment and return to determine if this contaminates the data at all.
@@ -137,32 +111,14 @@ degree_prior_df = perm_df.merge(degree_prior_df)
 degree_prior_df = degree_prior_df.sort_values(['compound_treats', 'disease_treats'])
 
 
-# In[16]:
-
-degree_prior_df.tail(2)
-
-
 # In[17]:
 
 degree_prior_df.to_csv('data/degree-prior.tsv', sep='\t', index=False, float_format='%.6g')
-
 
 # In[18]:
 
 obs_prior_df = pair_df.merge(perm_df)
 
-
-# In[19]:
-
-obs_prior_df.head(2)
-
-
-# In[20]:
-
-len(obs_prior_df)
-
-
 # In[21]:
 
 obs_prior_df.to_csv('data/observation-prior.tsv', sep='\t', index=False, float_format='%.6g')
-
