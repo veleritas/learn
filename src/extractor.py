@@ -6,8 +6,9 @@ import pandas as pd
 from tqdm import tqdm
 from scipy.sparse import diags
 from hetio.hetnet import MetaGraph
-from parallel import parallel_process
-import matrix_tools as mt
+
+from .parallel import parallel_process
+from . import matrix_tools as mt
 
 
 class MatrixFormattedGraph(object):
