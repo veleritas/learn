@@ -114,6 +114,26 @@ dwpc_spread_df.shape
 dwpc_spread_df.head()
 
 
+# ---
+
+# ## Filter out features which are all zero
+
+# In[ ]:
+
+bad_features = []
+for col_name in dwpc_spread_df.columns:
+    if dwpc_spread_df[col_name].dtype == "float64":
+        if np.isclose(dwpc_spread_df[col_name], 0, atol=1e-6):
+            bad_features.append(col_name)
+
+
+# In[ ]:
+
+dwpc_spread_df = dwpc_spread_df.drop(bad_features, axis=1)
+
+
+# ---
+
 # In[11]:
 
 dwpc_spread_df["hetnet"].value_counts()
