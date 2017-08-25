@@ -123,7 +123,7 @@ dwpc_spread_df.head()
 bad_features = []
 for col_name in dwpc_spread_df.columns:
     if dwpc_spread_df[col_name].dtype == "float64":
-        if np.isclose(dwpc_spread_df[col_name], 0, atol=1e-6):
+        if np.isclose(dwpc_spread_df[col_name], 0, atol=1e-6).all():
             bad_features.append(col_name)
 
 
